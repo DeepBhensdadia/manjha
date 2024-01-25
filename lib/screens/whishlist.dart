@@ -57,11 +57,15 @@ class _WhishlistScreenState extends State<WhishlistScreen> {
                   style: TextButton.styleFrom(
                     padding: const EdgeInsets.symmetric(vertical: 16),
                     textStyle:
-                    TextStyle(fontSize: 14, fontWeight: FontWeight.w500),
+                        TextStyle(fontSize: 14, fontWeight: FontWeight.w500),
                     shape: StadiumBorder(),
                     backgroundColor: Color(0xff23AA49),
                   ),
-                  child: Center(child: Text("Buy Now - ₹120",style: TextStyle(fontSize: 16),))),
+                  child: Center(
+                      child: Text(
+                    "Buy Now - ₹120",
+                    style: TextStyle(fontSize: 16),
+                  ))),
             ),
             SizedBox(
               height: 30,

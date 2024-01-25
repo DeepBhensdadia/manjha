@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:manjha/model/cart_data.dart';
 import 'package:manjha/widget/cart_item.dart';
+
+import 'checkoutscreen.dart';
 
 class CartScreen extends StatelessWidget {
   const CartScreen({Key? key}) : super(key: key);
@@ -49,7 +52,9 @@ class CartScreen extends StatelessWidget {
                 FractionallySizedBox(
                   widthFactor: 1,
                   child: ElevatedButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        Get.to(CheckoutScreen());
+                      },
                       style: TextButton.styleFrom(
                         padding: const EdgeInsets.symmetric(vertical: 16),
                         textStyle:

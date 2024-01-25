@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:manjha/screens/cartscreens/detailsscreen.dart';
+import 'package:manjha/screens/Product/productdetailsscreen.dart';
 import 'package:manjha/const.dart';
 
 class VegetableCardWidget extends StatelessWidget {
@@ -21,7 +21,7 @@ class VegetableCardWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () =>  Get.to(DetailScreen()),
+      // onTap: () =>  Get.to(ProductDetailScreen()),
       child: Card(
         margin: EdgeInsets.symmetric(horizontal: 1),
           color: backgroundcolor,

@@ -1,29 +1,30 @@
 import 'package:flutter/material.dart';
 import 'package:manjha/const.dart';
-import 'package:manjha/screens/homescreen.dart';
-import 'package:manjha/screens/orders.dart';
+import 'package:manjha/helper.dart';
+import 'package:manjha/screens/homescreeen/homescreen.dart';
 import 'package:manjha/screens/profile.dart';
+import 'package:manjha/screens/sellfishscreen.dart';
 import 'package:manjha/screens/storescreen.dart';
-import 'package:manjha/screens/whishlist.dart';
 
-
+import 'charchascreens/charchascreen.dart';
+import 'discover/discoverscreen.dart';
 
 class MainScreens extends StatefulWidget {
   @override
   State<MainScreens> createState() => _MainScreensState();
 }
 
-class _MainScreensState extends State<MainScreens> {
-  int currentTab = 0;
+class _MainScreensState extends State<MainScreens> with SingleTickerProviderStateMixin  {
+  int currentTab = 2;
   final List screens = [
-    const HomeScreen(),
-    const OrderScreen(),
+     HomeScreen(),
+    const SellFishScreen(),
     const StoreScreen(),
-    const WhishlistScreen(),
-    const ProfileScreen()
+     CharchaScreen(ForumType.Forum),
+     DiscoverScreen(),
   ];
   final PageStorageBucket bucket = PageStorageBucket();
-  Widget currentScreen = const HomeScreen();
+  Widget currentScreen = const StoreScreen();
 
   @override
   Widget build(BuildContext context) {
@@ -35,7 +36,7 @@ class _MainScreensState extends State<MainScreens> {
       floatingActionButton: Visibility(
         visible: !showfab,
         child: FloatingActionButton(
-            backgroundColor: greenthemecolor,
+            backgroundColor: themecolor,
             onPressed: () {
               setState(() {
                 currentScreen = StoreScreen();
@@ -59,10 +60,10 @@ class _MainScreensState extends State<MainScreens> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   MaterialButton(
-                    minWidth: 40,
+                    minWidth: screenwidth(context, dividedby: 5),
                     onPressed: () {
                       setState(() {
-                        currentScreen = const HomeScreen();
+                        currentScreen =  HomeScreen();
                         currentTab = 0;
                       });
                     },
@@ -71,28 +72,26 @@ class _MainScreensState extends State<MainScreens> {
                       children: [
                         Icon(
                           Icons.home_outlined,
-                          color: currentTab == 0
-                              ?  greenthemecolor
-                              : Colors.grey,
+                          color:
+                              currentTab == 0 ? themecolor : Colors.grey,
                           size: 23,
                         ),
                         Text(
                           'Home',
                           style: TextStyle(
                             fontSize: 12,
-                            color: currentTab == 0
-                                ?  greenthemecolor
-                                : Colors.grey,
+                            color:
+                                currentTab == 0 ? themecolor : Colors.grey,
                           ),
                         ),
                       ],
                     ),
                   ),
                   MaterialButton(
-                    minWidth: 40,
+                    minWidth: screenwidth(context, dividedby: 5),
                     onPressed: () {
                       setState(() {
-                        currentScreen = const OrderScreen();
+                        currentScreen = SellFishScreen();
                         currentTab = 1;
                       });
                     },
@@ -100,19 +99,17 @@ class _MainScreensState extends State<MainScreens> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Icon(
-                          Icons.favorite_border,
-                          color: currentTab == 1
-                              ?  greenthemecolor
-                              : Colors.grey,
+                          Icons.shopping_cart_outlined,
+                          color:
+                              currentTab == 1 ? themecolor : Colors.grey,
                           size: 23,
                         ),
                         Text(
-                          'Orders',
+                          'Sell',
                           style: TextStyle(
                             fontSize: 12,
-                            color: currentTab == 1
-                                ? greenthemecolor
-                                : Colors.grey,
+                            color:
+                                currentTab == 1 ? themecolor : Colors.grey,
                           ),
                         ),
                       ],
@@ -125,10 +122,10 @@ class _MainScreensState extends State<MainScreens> {
                 crossAxisAlignment: CrossAxisAlignment.end,
                 children: [
                   MaterialButton(
-                    minWidth: 40,
+                    minWidth: screenwidth(context, dividedby: 5),
                     onPressed: () {
                       setState(() {
-                        currentScreen = const WhishlistScreen();
+                        currentScreen =  CharchaScreen(ForumType.Forum);
                         currentTab = 3;
                       });
                     },
@@ -136,29 +133,27 @@ class _MainScreensState extends State<MainScreens> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Icon(
-                          Icons.shopping_cart,
-                          color: currentTab == 3
-                              ? greenthemecolor
-                              : Colors.grey,
+                          Icons.people_alt_outlined,
+                          color:
+                              currentTab == 3 ? themecolor : Colors.grey,
                           size: 23,
                         ),
                         Text(
-                          'Whishlist',
+                          'Charcha',
                           style: TextStyle(
                             fontSize: 12,
-                            color: currentTab == 3
-                                ? greenthemecolor
-                                : Colors.grey,
+                            color:
+                                currentTab == 3 ? themecolor : Colors.grey,
                           ),
                         ),
                       ],
                     ),
                   ),
                   MaterialButton(
-                    minWidth: 40,
+                    minWidth: screenwidth(context, dividedby: 5),
                     onPressed: () {
                       setState(() {
-                        currentScreen = const ProfileScreen();
+                        currentScreen =  DiscoverScreen();
                         currentTab = 4;
                       });
                     },
@@ -166,19 +161,17 @@ class _MainScreensState extends State<MainScreens> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Icon(
-                          Icons.person_outline_outlined,
-                          color: currentTab == 4
-                              ? greenthemecolor
-                              : Colors.grey,
+                          Icons.menu_book_outlined,
+                          color:
+                              currentTab == 4 ? themecolor : Colors.grey,
                           size: 23,
                         ),
                         Text(
-                          'Profile',
+                          'Discover',
                           style: TextStyle(
                             fontSize: 12,
-                            color: currentTab == 4
-                                ? greenthemecolor
-                                : Colors.grey,
+                            color:
+                                currentTab == 4 ? themecolor : Colors.grey,
                           ),
                         ),
                       ],
@@ -192,4 +185,7 @@ class _MainScreensState extends State<MainScreens> {
       ),
     );
   }
+
+  // TODO: implement wantKeepAlive
+  bool get wantKeepAlive => true;
 }
